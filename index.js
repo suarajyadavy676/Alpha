@@ -8,7 +8,7 @@ dotenv.config();
 app.use(express.json());
 let port = process.env.PORT || 4000
 
-app.use("/api/auth",userRouter)
+app.use("/api",userRouter)
 app.get("/", (req, res) => {
   res.send("<h1 style='text-align:center;margin-top:50px'>Hello this is home page</h1>");
 })
