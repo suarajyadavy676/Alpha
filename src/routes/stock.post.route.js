@@ -4,8 +4,11 @@ const Post = require("../models/stock.post.model");
 const Comment = require("../models/stock.comments.model");
 const stockPostRouter = Router();
 
+
+// Stock Posts Management:
+
 //1. Create a Stock Post - POST
-stockPostRouter.post("/posts", authenticateToken, async (req, res) => {
+stockPostRouter.post("/", authenticateToken, async (req, res) => {
   const { stockSymbol, title, description, tags } = req.body;
 
   try {
@@ -34,7 +37,7 @@ stockPostRouter.post("/posts", authenticateToken, async (req, res) => {
 });
 
 //2. Get all stock posts with optional filters and sorting
-stockPostRouter.get("/posts", async (req, res) => {
+stockPostRouter.get("/", async (req, res) => {
   const { stockSymbol, tags, sortBy } = req.query;
 
   try {
@@ -84,7 +87,7 @@ stockPostRouter.get("/posts", async (req, res) => {
 });
 
 //3. Get a single stock post with comments
-stockPostRouter.get("/posts/:postId", async (req, res) => {
+stockPostRouter.get("/:postId", async (req, res) => {
   const { postId } = req.params;
 
   try {
@@ -125,7 +128,7 @@ stockPostRouter.get("/posts/:postId", async (req, res) => {
 
 //4. Delete a Stock Post - DELETE
 // Delete a stock post by postId
-stockPostRouter.delete("/posts/:postId", authenticateToken, async (req, res) => {
+stockPostRouter.delete("/:postId", authenticateToken, async (req, res) => {
   const { postId } = req.params;
 
   try {
@@ -153,5 +156,6 @@ stockPostRouter.delete("/posts/:postId", authenticateToken, async (req, res) => 
     res.status(500).json({ success: false, message: "Failed to delete post" });
   }
 });
+
 
 module.exports = stockPostRouter

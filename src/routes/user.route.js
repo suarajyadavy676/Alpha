@@ -112,7 +112,7 @@ userRouter.get("/user/profile/:userId", authenticateToken, async (req, res) => {
 });
 
 // Update user profile
-userRouter.put("/profile", authenticateToken, async (req, res) => {
+userRouter.put("/user/profile", authenticateToken, async (req, res) => {
   const { username, bio, profilePicture } = req.body;
   
   try {

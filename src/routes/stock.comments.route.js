@@ -5,7 +5,7 @@ const authenticateToken = require("../middlewares/authenticateToken");
 
 const commentRouter = Router();
 //1. Add a Comment to a Post - POST
-commentRouter.post("/posts/:postId/comments", authenticateToken, async (req, res) => {
+commentRouter.post("/:postId/comments", authenticateToken, async (req, res) => {
   const { postId } = req.params;
   const { comment } = req.body;
   const userId = req.user.id; // Assuming user ID is stored in JWT payload
@@ -38,7 +38,7 @@ commentRouter.post("/posts/:postId/comments", authenticateToken, async (req, res
 });
 
 //2. Delete a Comment - DELETE
-commentRouter.delete("/posts/:postId/comments/:commentId", authenticateToken, async (req, res) => {
+commentRouter.delete("/:postId/comments/:commentId", authenticateToken, async (req, res) => {
   const { postId, commentId } = req.params;
 
   try {
